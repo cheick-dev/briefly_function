@@ -9,7 +9,8 @@ export default async ({ req, res, log, error }) => {
 		.setEndpoint(process.env.APPWRITE_FUNCTION_API_ENDPOINT)
 		.setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
 		.setKey(req.headers["x-appwrite-key"] ?? "");
-	const users = new Users(client);
+
+	const { url } = JSON.parse(req.body);
 
 	try {
 		// Téléchargement de l'audio uniquement
@@ -19,7 +20,7 @@ export default async ({ req, res, log, error }) => {
 			audioFormat: "mp3",
 			output,
 		});
-		log(output);
+		log("output" + output + "url", +url);
 	} catch (err) {
 		error("Could not list users: " + err.message);
 	}
@@ -28,7 +29,7 @@ export default async ({ req, res, log, error }) => {
 	if (req.path === "/ping") {
 		// Use res object to respond with text(), json(), or binary()
 		// Don't forget to return a response!
-		return res.text("Pong okok okok!");
+		return res.text("Pong okok okok!220");
 	}
 
 	return res.json({
