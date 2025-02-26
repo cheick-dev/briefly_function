@@ -23,7 +23,7 @@ export default async ({ req, res, log, error }) => {
 	if (req.path === "/ping") {
 		// Use res object to respond with text(), json(), or binary()
 		// Don't forget to return a response!
-		return res.text("Pong");
+		return res.text("Pong1");
 	}
 
 	return res.json({
