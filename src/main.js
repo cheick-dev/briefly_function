@@ -1,4 +1,5 @@
 import { Client, Users } from "node-appwrite";
+import * as ytdlp from "yt-dlp-exec";
 
 // This Appwrite function will be executed every time your function is triggered
 export default async ({ req, res, log, error }) => {
@@ -11,10 +12,14 @@ export default async ({ req, res, log, error }) => {
 	const users = new Users(client);
 
 	try {
-		const response = await users.list();
-		// Log messages and errors to the Appwrite Console
-		// These logs won't be seen by your end users
-		log(`Total users: ${response.total}`);
+		// Téléchargement de l'audio uniquement
+		const output = `audio-${Date.now()}.mp3`;
+		await ytdlp(url, {
+			extractAudio: true,
+			audioFormat: "mp3",
+			output,
+		});
+		log(output);
 	} catch (err) {
 		error("Could not list users: " + err.message);
 	}

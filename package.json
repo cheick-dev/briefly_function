@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "node-appwrite": "^15.0.0"
+    "node-appwrite": "^15.0.0",
+    "yt-dlp-exec": "^1.0.2"
   }
 }
