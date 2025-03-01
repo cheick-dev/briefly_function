@@ -10,7 +10,7 @@ export default async ({ req, res, log, error }) => {
 		.setProject(process.env.APPWRITE_FUNCTION_PROJECT_ID)
 		.setKey(req.headers["x-appwrite-key"] ?? "");
 
-	const { url } = JSON.parse(req.body);
+	// const { url } = JSON.parse(req.body);
 
 	try {
 		// const transcript = await YoutubeTranscript.fetchTranscript(url);
