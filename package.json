@@ -11,6 +11,7 @@
   "description": "",
   "dependencies": {
     "node-appwrite": "^15.0.0",
+    "youtube-transcript": "^1.2.1",
     "yt-dlp-exec": "^1.0.2"
   }
 }

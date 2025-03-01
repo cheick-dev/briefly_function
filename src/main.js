@@ -1,5 +1,5 @@
 import { Client, Users } from "node-appwrite";
-import * as ytdlp from "yt-dlp-exec";
+import { YoutubeTranscript } from "youtube-transcript";
 
 // This Appwrite function will be executed every time your function is triggered
 export default async ({ req, res, log, error }) => {
@@ -13,14 +13,8 @@ export default async ({ req, res, log, error }) => {
 	const { url } = JSON.parse(req.body);
 
 	try {
-		// Téléchargement de l'audio uniquement
-		const output = `audio-${Date.now()}.mp3`;
-		await ytdlp(url, {
-			extractAudio: true,
-			audioFormat: "mp3",
-			output,
-		});
-		log("output" + output + "url", +url);
+		const transcript = await YoutubeTranscript.fetchTranscript(url);
+		return res.json({ transcript, url });
 	} catch (err) {
 		error("Could not list users: " + err.message);
 	}
