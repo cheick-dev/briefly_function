@@ -13,8 +13,8 @@ export default async ({ req, res, log, error }) => {
 	const { url } = JSON.parse(req.body);
 
 	try {
-		const transcript = await YoutubeTranscript.fetchTranscript(url);
-		return res.json({ transcript, url });
+		// const transcript = await YoutubeTranscript.fetchTranscript(url);
+		// return res.json({ transcript, url });
 	} catch (err) {
 		error("Could not list users: " + err.message);
 	}
@@ -27,9 +27,6 @@ export default async ({ req, res, log, error }) => {
 	}
 
 	return res.json({
-		motto: "Build like a team of hundreds_",
-		learn: "https://appwrite.io/docs",
-		connect: "https://appwrite.io/discord",
-		getInspired: "https://builtwith.appwrite.io",
+		req,
 	});
 };
